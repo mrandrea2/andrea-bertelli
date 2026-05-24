@@ -3,7 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrea Bertelli</title>
+
+<!-- SEO META TAGS -->
+<title>Andrea Bertelli — Psicologo, Nutrizionista & Preparatore Fisico | Verona</title>
+<meta name="description" content="Andrea Bertelli: psicologo iscritto all'Albo, nutrizionista, preparatore fisico con esperienza in Serie A. Specializzato in PNEI, psicologia sportiva, nutrizione funzionale e mental coaching a Verona e online.">
+<meta name="keywords" content="psicologo sportivo Verona, preparatore fisico Verona, nutrizionista Verona, mental coaching, psicologia scolastica Verona, PNEI, performance sportiva, allenamento cognitivo, Andrea Bertelli">
+<meta name="author" content="Andrea Bertelli">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Italian">
+<link rel="canonical" href="https://andrea-bertelli.vercel.app/">
+
+<!-- OPEN GRAPH (anteprima su social e WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://andrea-bertelli.vercel.app/">
+<meta property="og:title" content="Andrea Bertelli — Psicologo, Nutrizionista & Preparatore Fisico">
+<meta property="og:description" content="Approccio olistico a sport, mente e benessere. Psicologo iscritto all'Albo, nutrizionista, preparatore fisico Serie A. Specializzato in PNEI e mental coaching.">
+<meta property="og:image" content="https://andrea-bertelli.vercel.app/og-image.jpg">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Andrea Bertelli">
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Andrea Bertelli — Psicologo, Nutrizionista & Preparatore Fisico">
+<meta name="twitter:description" content="Approccio olistico a sport, mente e benessere. Specializzato in PNEI, mental coaching e nutrizione sportiva.">
+
+<!-- SCHEMA MARKUP (Google capisce chi sei) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrea Bertelli",
+  "jobTitle": "Psicologo, Nutrizionista, Preparatore Fisico",
+  "description": "Psicologo iscritto all'Albo, nutrizionista, preparatore fisico specializzato in PNEI e psicologia sportiva",
+  "url": "https://andrea-bertelli.vercel.app/",
+  "email": "humanperformancelab.app@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Verona",
+    "addressCountry": "IT"
+  },
+  "sameAs": [],
+  "knowsAbout": ["Psicologia dello Sport", "Nutrizione Sportiva", "PNEI", "Mental Coaching", "Preparazione Fisica", "Psicologia Scolastica"]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300;1,700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -907,6 +950,92 @@ footer p {
   color: var(--muted);
 }
 
+/* STICKY CTA */
+.sticky-cta {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 400;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem;
+  opacity: 0; transform: translateY(20px); transition: all 0.4s ease;
+}
+.sticky-cta.show { opacity: 1; transform: translateY(0); }
+.sticky-cta-btn {
+  background: var(--orange); color: white; border: none;
+  border-radius: 50px; padding: 0.9rem 1.8rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem;
+  letter-spacing: 0.15em; cursor: pointer;
+  box-shadow: 0 8px 30px rgba(245,96,42,0.4);
+  transition: all 0.25s; white-space: nowrap;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.sticky-cta-btn:hover { background: var(--orange2); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(245,96,42,0.5); }
+.sticky-pulse { width: 10px; height: 10px; border-radius: 50%; background: white; animation: spulse 1.5s ease infinite; }
+@keyframes spulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:0.6} }
+
+/* CALENDLY MODAL */
+.cal-modal {
+  position: fixed; inset: 0; z-index: 9500;
+  background: rgba(8,13,26,0.92); backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 1.5rem;
+}
+.cal-modal.open { opacity: 1; pointer-events: all; }
+.cal-box {
+  background: var(--navy2); border: 1px solid var(--border);
+  border-top: 3px solid var(--orange); max-width: 640px; width: 100%;
+  padding: 3rem; border-radius: 4px; position: relative; text-align: center;
+}
+.cal-close { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
+.cal-close:hover { color: var(--orange); }
+.cal-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.06em; color: var(--white); margin-bottom: 0.5rem; }
+.cal-box p { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+.cal-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.cal-option { background: var(--night); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem 1rem; cursor: pointer; transition: all 0.25s; text-align: center; }
+.cal-option:hover { border-color: var(--orange); background: rgba(245,96,42,0.05); }
+.cal-option-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.cal-option-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 0.3rem; }
+.cal-option-desc { font-size: 0.78rem; color: var(--muted); }
+.cal-link { display: inline-flex; align-items: center; gap: 0.8rem; background: var(--orange); color: white; text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; padding: 1rem 2.5rem; border-radius: 2px; transition: all 0.25s; }
+.cal-link:hover { background: var(--orange2); transform: translateY(-2px); }
+
+/* TESTIMONIALS */
+#testimonials { background: var(--navy); }
+.testi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 4rem; }
+.testi-card { background: var(--night); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; position: relative; transition: all 0.3s; }
+.testi-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+.testi-quote { position: absolute; top: 1.5rem; right: 2rem; font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: rgba(245,96,42,0.08); line-height: 1; }
+.testi-stars { color: var(--orange); font-size: 1rem; margin-bottom: 1.2rem; letter-spacing: 0.2em; }
+.testi-text { font-size: 1rem; color: var(--off-white); line-height: 1.85; margin-bottom: 1.8rem; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 1rem; }
+.testi-av { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), #c43d10); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: white; flex-shrink: 0; }
+.testi-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
+.testi-role { font-size: 0.78rem; color: var(--orange); margin-top: 0.15rem; }
+
+/* BLOG */
+#blog { background: var(--night); }
+.blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+.blog-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: all 0.35s; cursor: pointer; }
+.blog-card:hover { border-color: var(--orange); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+.blog-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; }
+.blog-body { padding: 1.8rem; }
+.blog-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.7rem; }
+.blog-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; letter-spacing: 0.03em; color: var(--white); line-height: 1.15; margin-bottom: 0.8rem; }
+.blog-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
+.blog-meta { display: flex; align-items: center; justify-content: space-between; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.blog-read { color: var(--orange); }
+
+/* BLOG MODAL */
+.blog-modal { position: fixed; inset: 0; z-index: 9400; background: rgba(8,13,26,0.95); backdrop-filter: blur(15px); display: flex; align-items: flex-start; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 2rem 1.5rem; overflow-y: auto; }
+.blog-modal.open { opacity: 1; pointer-events: all; }
+.blog-modal-box { background: var(--navy2); border: 1px solid var(--border); border-top: 3px solid var(--orange); max-width: 760px; width: 100%; padding: 3.5rem; border-radius: 4px; position: relative; margin: auto; }
+.blog-modal-close { position: absolute; top: 1.2rem; right: 1.5rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
+.blog-modal-close:hover { color: var(--orange); }
+.blog-modal-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+.blog-modal-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,5vw,3rem); letter-spacing: 0.03em; color: var(--white); line-height: 1; margin-bottom: 1.5rem; }
+.blog-modal-content { font-size: 1rem; color: var(--off-white); line-height: 2; }
+.blog-modal-content p { margin-bottom: 1.2rem; }
+.blog-modal-content h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: var(--orange); margin: 2rem 0 0.8rem; }
+.blog-modal-cta { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.blog-modal-cta p { font-size: 0.9rem; color: var(--muted); }
+
 /* REVEAL */
 .reveal { opacity: 0; transform: translateY(25px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -1121,6 +1250,49 @@ footer p {
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <button class="sticky-cta-btn" onclick="openCal()">
+    <div class="sticky-pulse"></div>
+    PRENOTA UNA CONSULENZA
+  </button>
+</div>
+
+<!-- CALENDLY MODAL -->
+<div class="cal-modal" id="calModal" onclick="if(event.target===this)closeCal()">
+  <div class="cal-box">
+    <button class="cal-close" onclick="closeCal()">✕</button>
+    <h3>PRENOTA UNA CONSULENZA</h3>
+    <p>Scegli il tipo di consulenza che fa per te. Rispondo entro 24 ore per fissare data e orario.</p>
+    <div class="cal-options">
+      <div class="cal-option">
+        <div class="cal-option-icon">🏋️</div>
+        <div class="cal-option-title">Sport & Fitness</div>
+        <div class="cal-option-desc">Preparazione fisica, performance atletica, schede allenamento</div>
+      </div>
+      <div class="cal-option">
+        <div class="cal-option-icon">🧠</div>
+        <div class="cal-option-title">Psicologia</div>
+        <div class="cal-option-desc">Mental coaching, psicologia scolastica, PNEI, supporto mentale</div>
+      </div>
+      <div class="cal-option">
+        <div class="cal-option-icon">🥗</div>
+        <div class="cal-option-title">Nutrizione</div>
+        <div class="cal-option-desc">Piano nutrizionale personalizzato, nutrizione sportiva</div>
+      </div>
+      <div class="cal-option">
+        <div class="cal-option-icon">🔬</div>
+        <div class="cal-option-title">Consulenza Olistica</div>
+        <div class="cal-option-desc">Approccio integrato PNEI: mente, corpo e alimentazione</div>
+      </div>
+    </div>
+    <a href="https://calendly.com/humanperformancelab-app/30min" target="_blank" class="cal-link">
+      📅 &nbsp; PRENOTA ORA SU CALENDLY
+    </a>
+    <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted)">Oppure scrivimi a <a href="mailto:humanperformancelab.app@gmail.com" style="color:var(--orange)">humanperformancelab.app@gmail.com</a></p>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">A<span>.</span>BERTELLI</a>
@@ -1128,6 +1300,8 @@ footer p {
     <li><a href="#about">Profilo</a></li>
     <li><a href="#pillars">Competenze</a></li>
     <li><a href="#progetti">Progetti</a></li>
+    <li><a href="#testimonials">Recensioni</a></li>
+    <li><a href="#blog">Blog</a></li>
     <li><a href="#experience">Esperienza</a></li>
     <li><a href="#education">Formazione</a></li>
     <li><a href="#contact">Contatti</a></li>
@@ -1329,7 +1503,7 @@ footer p {
       <div class="ai-messages" id="aiMessages">
         <div class="msg ai">
           <div class="msg-av">AB</div>
-          <div class="msg-b">Ciao! Sono l'assistente AI di Andrea Bertelli. Posso darti informazioni sul suo approccio, metodo e competenze in ambito sportivo, psicologico e nutrizionale.<br><br><em style="font-size:0.82rem;opacity:0.7">Nota: le mie risposte sono generate da IA e hanno scopo informativo. Non sostituiscono una consulenza diretta con Andrea. Per un supporto personalizzato scrivimi a humanperformancelab.app@gmail.com</em></div>
+          <div class="msg-b">Ciao! Sono l'assistente AI di Andrea Bertelli. Posso darti informazioni sul suo approccio, metodo e competenze in ambito sportivo, psicologico e nutrizionale.<br><br><em style="font-size:0.82rem;opacity:0.7">Nota: le mie risposte sono generate da IA e hanno scopo informativo. Non sostituiscono una consulenza diretta con Andrea. Per un supporto personalizzato scrivimi a bertelli.andrea10.86@gmail.com</em></div>
         </div>
       </div>
       <div class="ai-input-row">
@@ -1338,7 +1512,7 @@ footer p {
       </div>
       <div style="padding:1rem 2rem; border-top:1px solid var(--border); background:rgba(245,96,42,0.04);">
         <p style="font-size:0.72rem; color:var(--muted); line-height:1.6; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.04em;">
-          ⚠️ <strong style="color:var(--orange)">DISCLAIMER</strong> — Le risposte sono generate da intelligenza artificiale e hanno scopo puramente informativo. Non sostituiscono una consulenza professionale personalizzata con Andrea Bertelli. Per questioni di salute, psicologiche o nutrizionali, è sempre consigliato rivolgersi a un professionista qualificato o al proprio medico. Per una consulenza diretta scrivi a <a href="mailto:humanperformancelab.app@gmail.com" style="color:var(--orange)">humanperformancelab.app@gmail.com</a>
+          ⚠️ <strong style="color:var(--orange)">DISCLAIMER</strong> — Le risposte sono generate da intelligenza artificiale e hanno scopo puramente informativo. Non sostituiscono una consulenza professionale personalizzata con Andrea Bertelli. Per questioni di salute, psicologiche o nutrizionali, è sempre consigliato rivolgersi a un professionista qualificato o al proprio medico. Per una consulenza diretta scrivi a <a href="mailto:bertelli.andrea10.86@gmail.com" style="color:var(--orange)">bertelli.andrea10.86@gmail.com</a>
         </p>
       </div>
     </div>
@@ -1501,6 +1675,171 @@ footer p {
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="s">
+    <div class="reveal">
+      <div class="tag">Recensioni</div>
+      <h2 class="big-title">COSA DICONO<br><em>DI ME</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Andrea ha completamente trasformato il mio approccio alla performance. Lavorare con lui sulla parte mentale mi ha permesso di sbloccare potenziale che non sapevo di avere. La combinazione di psicologia e preparazione fisica è unica nel suo genere.</p>
+        <div class="testi-author">
+          <div class="testi-av">ML</div>
+          <div>
+            <div class="testi-name">M. L.</div>
+            <div class="testi-role">Atleta — Pallavolo Serie B</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-d1">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Grazie al percorso nutrizionale con Andrea ho finalmente capito come alimentarmi in funzione del mio sport. Non è solo una dieta: è un cambiamento di mindset verso il cibo e la performance. Risultati concreti in pochi mesi.</p>
+        <div class="testi-author">
+          <div class="testi-av">GT</div>
+          <div>
+            <div class="testi-name">G. T.</div>
+            <div class="testi-role">Tennista Agonista — Verona</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Mio figlio stava attraversando un momento difficile a scuola, demotivato e con ansia da prestazione. Il supporto di Andrea in ambito psicologico è stato fondamentale. In pochi mesi abbiamo visto un cambiamento reale nella sua autostima e nei risultati.</p>
+        <div class="testi-author">
+          <div class="testi-av">SR</div>
+          <div>
+            <div class="testi-name">S. R.</div>
+            <div class="testi-role">Genitore — Studente Superiori</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-d1">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Ho seguito il percorso PNEI con Andrea dopo un periodo di stress cronico e calo delle performance sportive. L'approccio integrato — mente, corpo, alimentazione — mi ha aiutato a ritrovare energie ed equilibrio. Una figura professionale davvero rara.</p>
+        <div class="testi-author">
+          <div class="testi-av">FC</div>
+          <div>
+            <div class="testi-name">F. C.</div>
+            <div class="testi-role">Runner Amatoriale — 42 anni</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="s">
+    <div class="reveal">
+      <div class="tag">Articoli & Risorse</div>
+      <h2 class="big-title">IL MIO<br><em>BLOG</em></h2>
+    </div>
+    <div class="blog-grid reveal">
+
+      <div class="blog-card" onclick="openBlog(0)">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">🧠</div>
+        <div class="blog-body">
+          <div class="blog-cat">Psicologia dello Sport</div>
+          <div class="blog-title">ANSIA DA PRESTAZIONE: COME TRASFORMARLA IN ENERGIA</div>
+          <p class="blog-excerpt">L'ansia prima di una gara non è il tuo nemico. Scopri come la psicologia cognitiva può aiutarti a usarla come carburante per la performance.</p>
+          <div class="blog-meta">
+            <span>5 min lettura</span>
+            <span class="blog-read">Leggi →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog(1)">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0d2218,#1a4a2e)">🥗</div>
+        <div class="blog-body">
+          <div class="blog-cat">Nutrizione Sportiva</div>
+          <div class="blog-title">CARBOIDRATI E SPORT: TUTTO QUELLO CHE DEVI SAPERE</div>
+          <p class="blog-excerpt">I carboidrati sono nemici o alleati? La scienza della nutrizione sportiva risponde. Guida pratica per atleti e sportivi amatoriali.</p>
+          <div class="blog-meta">
+            <span>6 min lettura</span>
+            <span class="blog-read">Leggi →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog(2)">
+        <div class="blog-img" style="background:linear-gradient(135deg,#1a1a0d,#3a3a1a)">💪</div>
+        <div class="blog-body">
+          <div class="blog-cat">Preparazione Fisica</div>
+          <div class="blog-title">PERIODIZZAZIONE: PERCHÉ IL TUO ALLENAMENTO NON FUNZIONA</div>
+          <p class="blog-excerpt">Allenarsi tanto non basta. La periodizzazione è la differenza tra un atleta che migliora e uno che si ferma. Scopri i principi fondamentali.</p>
+          <div class="blog-meta">
+            <span>7 min lettura</span>
+            <span class="blog-read">Leggi →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog(3)">
+        <div class="blog-img" style="background:linear-gradient(135deg,#1a0d1a,#3a1a3a)">🔬</div>
+        <div class="blog-body">
+          <div class="blog-cat">PNEI</div>
+          <div class="blog-title">PNEI: LA SCIENZA CHE COLLEGA MENTE, CORPO E IMMUNITÀ</div>
+          <p class="blog-excerpt">La Psiconeuroendocrinoimmunologia spiega perché stress, emozioni e alimentazione influenzano direttamente le tue performance e la tua salute.</p>
+          <div class="blog-meta">
+            <span>8 min lettura</span>
+            <span class="blog-read">Leggi →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog(4)">
+        <div class="blog-img" style="background:linear-gradient(135deg,#1a1200,#3a2800)">📚</div>
+        <div class="blog-body">
+          <div class="blog-cat">Psicologia Scolastica</div>
+          <div class="blog-title">MOTIVAZIONE ALLO STUDIO: 5 STRATEGIE CHE FUNZIONANO DAVVERO</div>
+          <p class="blog-excerpt">La motivazione non è un talento innato. È una competenza che si allena. Scopri le tecniche psicologiche più efficaci per studenti delle superiori.</p>
+          <div class="blog-meta">
+            <span>5 min lettura</span>
+            <span class="blog-read">Leggi →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlog(5)">
+        <div class="blog-img" style="background:linear-gradient(135deg,#001a1a,#003a3a)">👁️</div>
+        <div class="blog-body">
+          <div class="blog-cat">Performance Cognitiva</div>
+          <div class="blog-title">VISUAL TRAINING: L'ALLENAMENTO CHE GLI ATLETI D'ÉLITE GIÀ USANO</div>
+          <p class="blog-excerpt">La vista processa il 90% delle informazioni in gara. Allenare il sistema visivo e cognitivo è il vantaggio competitivo ancora poco esplorato nello sport.</p>
+          <div class="blog-meta">
+            <span>6 min lettura</span>
+            <span class="blog-read">Leggi →</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BLOG MODAL -->
+<div class="blog-modal" id="blogModal" onclick="if(event.target===this)closeBlog()">
+  <div class="blog-modal-box">
+    <button class="blog-modal-close" onclick="closeBlog()">✕</button>
+    <div class="blog-modal-cat" id="bCat"></div>
+    <div class="blog-modal-title" id="bTitle"></div>
+    <div class="blog-modal-content" id="bContent"></div>
+    <div class="blog-modal-cta">
+      <p>Hai domande su questo argomento?</p>
+      <a href="mailto:humanperformancelab.app@gmail.com" class="cal-link" style="font-size:0.9rem;padding:0.7rem 1.5rem">✉️ &nbsp; Scrivimi</a>
+    </div>
+  </div>
+</div>
+
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="s">
@@ -1604,14 +1943,14 @@ footer p {
           <div class="c-icon">✉️</div>
           <div>
             <div class="c-label">Email</div>
-            <div class="c-value">humanperformancelab.app@gmail.com</div>
+            <div class="c-value">bertelli.andrea10.86@gmail.com</div>
           </div>
         </div>
         <div class="contact-line">
           <div class="c-icon">📞</div>
           <div>
             <div class="c-label">Telefono</div>
-          
+            <div class="c-value">(+39) 349 245 0302</div>
           </div>
         </div>
         <div class="contact-line">
@@ -1646,6 +1985,102 @@ footer p {
 </footer>
 
 <script>
+// Sticky CTA
+window.addEventListener('scroll', () => {
+  document.getElementById('stickyCta').classList.toggle('show', window.scrollY > 500);
+});
+function openCal() { document.getElementById('calModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCal() { document.getElementById('calModal').classList.remove('open'); document.body.style.overflow=''; }
+
+// Blog articles
+const blogArticles = [
+  {
+    cat: 'Psicologia dello Sport',
+    title: "ANSIA DA PRESTAZIONE: COME TRASFORMARLA IN ENERGIA",
+    content: `<p>L'ansia prima di una gara o di una prestazione importante è un'esperienza universale. Ma la maggior parte degli atleti la interpreta come un segnale negativo, qualcosa da eliminare. La psicologia cognitiva ci dice il contrario.</p>
+    <h4>Riformulare il significato dell'ansia</h4>
+    <p>Le sensazioni fisiche dell'ansia — cuore che accelera, respiro più veloce, tensione muscolare — sono identiche a quelle dell'eccitazione. La differenza è solo nell'interpretazione che diamo a queste sensazioni. Dire a te stesso "sono carico" invece di "sono in ansia" non è autoconvincimento: è neuroscienzialmente fondato.</p>
+    <h4>La tecnica della finestra di tolleranza</h4>
+    <p>Ogni atleta ha una zona ottimale di attivazione emotiva entro cui performa meglio. Troppa calma porta apatia; troppa attivazione porta blocco. L'obiettivo non è eliminare l'ansia ma regolarla verso la tua finestra personale. Tecniche di respirazione diaframmatica, visualizzazione e routine pre-gara aiutano a trovare questo equilibrio.</p>
+    <h4>Il ruolo della PNEI</h4>
+    <p>Dal punto di vista della Psiconeuroendocrinoimmunologia, l'ansia cronica — non gestita — innesca risposte ormonali che abbassano le performance e la resistenza agli infortuni. Gestire il vissuto emotivo non è "roba da psicologi": è preparazione fisica nel senso più completo del termine.</p>
+    <p>Se vuoi lavorare sulla tua gestione emotiva pre-gara, scrivimi per una consulenza personalizzata.</p>`
+  },
+  {
+    cat: 'Nutrizione Sportiva',
+    title: "CARBOIDRATI E SPORT: TUTTO QUELLO CHE DEVI SAPERE",
+    content: `<p>I carboidrati sono stati a lungo diabolizzati nella cultura pop del fitness. La realtà scientifica è ben diversa, soprattutto per chi pratica sport.</p>
+    <h4>Il glicogeno è il tuo carburante</h4>
+    <p>Il glicogeno muscolare ed epatico — sintetizzato dai carboidrati — è la principale fonte energetica per attività di intensità medio-alta. Allenarsi con scorte basse significa performance ridotta, recupero più lento e maggior rischio di infortuni muscolari.</p>
+    <h4>Timing: quando mangiare i carboidrati</h4>
+    <p>Pre-allenamento: 1-3 ore prima, carboidrati a medio-alto indice glicemico per un carico energetico stabile. Durante: per sessioni superiori a 60-90 minuti, integrazione con gel o bevande sportive. Post-allenamento: finestra anabolica di 30-60 minuti per ricaricare il glicogeno e attivare la sintesi proteica.</p>
+    <h4>Qualità prima di tutto</h4>
+    <p>Non tutti i carboidrati sono uguali. Preferire cereali integrali, legumi, frutta e verdura rispetto a zuccheri semplici raffinati fa la differenza nel lungo periodo per salute metabolica e performance sostenibile.</p>
+    <p>Ogni atleta ha esigenze diverse. Contattami per un piano nutrizionale personalizzato sul tuo sport e i tuoi obiettivi.</p>`
+  },
+  {
+    cat: 'Preparazione Fisica',
+    title: "PERIODIZZAZIONE: PERCHÉ IL TUO ALLENAMENTO NON FUNZIONA",
+    content: `<p>Molti atleti si allenano tanto ma non migliorano. Il problema spesso non è la quantità di lavoro, ma la mancanza di struttura nel tempo: la periodizzazione.</p>
+    <h4>Cos'è la periodizzazione</h4>
+    <p>La periodizzazione è la pianificazione sistematica dell'allenamento in fasi (macrocicli, mesocicli, microcicli) con obiettivi specifici per ciascuna. Non si tratta di fare sempre lo stesso lavoro a intensità massima, ma di alternare fasi di carico e scarico in modo programmato.</p>
+    <h4>I principi fondamentali</h4>
+    <p>Supercompensazione: il corpo migliora durante il recupero, non durante lo stimolo allenante. Progressività: aumentare il carico in modo graduale evitando il plateau. Specificità: l'allenamento deve rispecchiare le richieste del tuo sport. Variabilità: cambiare stimoli previene l'adattamento e mantiene alta la motivazione.</p>
+    <h4>L'errore più comune</h4>
+    <p>Allenarsi sempre ad alta intensità senza fasi di scarico porta al sovrallenamento: calo delle performance, irritabilità, sonno disturbato, frequenza cardiaca a riposo elevata. Paradossalmente, allenarsi meno in certi periodi porta a migliorare di più.</p>
+    <p>Se vuoi una programmazione personalizzata per il tuo sport, scrivimi.</p>`
+  },
+  {
+    cat: 'PNEI',
+    title: "PNEI: LA SCIENZA CHE COLLEGA MENTE, CORPO E IMMUNITÀ",
+    content: `<p>La Psiconeuroendocrinoimmunologia — PNEI — è la disciplina scientifica che studia le interazioni tra sistema nervoso, sistema endocrino e sistema immunitario, e come queste siano influenzate da fattori psicologici e ambientali.</p>
+    <h4>Perché è rivoluzionaria</h4>
+    <p>Per decenni medicina e psicologia hanno operato in silos separati. La PNEI dimostra che mente e corpo comunicano costantemente attraverso un network di molecole — neurotrasmettitori, ormoni, citochine — che non conosce confini tra "fisico" e "mentale".</p>
+    <h4>Le implicazioni pratiche per lo sportivo</h4>
+    <p>Stress cronico elevato → cortisolo alto → abbassamento delle difese immunitarie → più infortuni e malattie. Ma anche: emozioni positive → endorfine e dopamina → migliore recupero muscolare → performance superiori. La gestione dello stress non è un lusso: è parte integrante dell'allenamento.</p>
+    <h4>Alimentazione e sistema nervoso</h4>
+    <p>L'intestino produce il 90% della serotonina del corpo. Un microbioma sano, supportato da una dieta ricca di fibre e fermentati, influenza direttamente umore, cognizione e risposta allo stress. Nutrirsi bene è letteralmente nutrire il cervello.</p>
+    <p>L'approccio PNEI è al centro di tutte le mie consulenze. Scrivimi per approfondire.</p>`
+  },
+  {
+    cat: 'Psicologia Scolastica',
+    title: "MOTIVAZIONE ALLO STUDIO: 5 STRATEGIE CHE FUNZIONANO DAVVERO",
+    content: `<p>La motivazione non è un tratto della personalità fisso. È una competenza che si può allenare, esattamente come un muscolo. Ecco cinque strategie basate sulla psicologia cognitiva e della motivazione.</p>
+    <h4>1. Obiettivi SMART e suddivisione dei compiti</h4>
+    <p>Obiettivi vaghi come "devo studiare di più" non attivano il sistema motivazionale. Obiettivi specifici, misurabili e con scadenza sì. "Studio capitoli 3 e 4 entro giovedì" è un obiettivo che il cervello può elaborare e pianificare.</p>
+    <h4>2. La tecnica del Pomodoro adattata</h4>
+    <p>25 minuti di focus totale + 5 minuti di pausa. Ma la chiave è cosa fai nella pausa: muoviti, non guardare il telefono. Il movimento fisico attiva il BDNF, fattore neurotrofico che migliora la memoria e l'apprendimento.</p>
+    <h4>3. Riformulazione del self-talk</h4>
+    <p>"Non sono capace" → "Non ho ancora capito questo concetto". La differenza linguistica attiva circuiti neurali diversi: crescita vs. blocco. Il cervello crede a ciò che gli diciamo.</p>
+    <h4>4. Ambiente fisico ottimizzato</h4>
+    <p>Temperatura 18-20°C, luce naturale, niente notifiche, scrivania ordinata. L'ambiente fisico non è neutro: influenza direttamente la capacità cognitiva e la resistenza alla distrazione.</p>
+    <h4>5. Celebrare i progressi piccoli</h4>
+    <p>Il sistema dopaminergico si attiva con i piccoli successi quotidiani, non solo con i grandi risultati. Tener traccia di ciò che hai fatto — non solo di ciò che manca — mantiene alta la motivazione nel lungo periodo.</p>`
+  },
+  {
+    cat: 'Performance Cognitiva',
+    title: "VISUAL TRAINING: L'ALLENAMENTO CHE GLI ATLETI D'ÉLITE GIÀ USANO",
+    content: `<p>Negli sport di squadra e di reazione, la differenza tra un atleta mediocre e uno d'élite spesso non sta nella forza o nella resistenza, ma nella velocità e qualità dell'elaborazione visiva e cognitiva.</p>
+    <h4>Il sistema visivo nello sport</h4>
+    <p>Il 90% delle informazioni che un atleta elabora in gara arriva attraverso la vista. Velocità di reazione, anticipazione dei movimenti avversari, lettura del gioco: tutto dipende dall'efficienza del sistema visivo e dalla sua integrazione con il sistema motorio.</p>
+    <h4>Cosa allena il visual training</h4>
+    <p>Velocità di reazione visiva: ridurre il tempo tra stimolo visivo e risposta motoria. Ampiezza del campo visivo: vedere "più" in una singola fissazione. Attenzione selettiva: focalizzarsi sugli stimoli rilevanti ignorando quelli irrilevanti. Memoria di lavoro visuo-spaziale: ricordare posizioni e movimenti in tempo reale.</p>
+    <h4>Perché è ancora sottovalutato</h4>
+    <p>La preparazione fisica tradizionale si concentra su forza, resistenza e tecnica. Il sistema cognitivo-visivo viene raramente allenato in modo sistematico, eppure è quello che fa la differenza nei momenti decisivi: l'ultimo secondo di gara, la scelta di passaggio, il tempo di reazione al servizio.</p>
+    <p>Prova subito l'app di allenamento cognitivo gratuita su allenamentocognitivo.lovable.app</p>`
+  }
+];
+
+function openBlog(i) {
+  const a = blogArticles[i];
+  document.getElementById('bCat').textContent = a.cat;
+  document.getElementById('bTitle').textContent = a.title;
+  document.getElementById('bContent').innerHTML = a.content;
+  document.getElementById('blogModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBlog() { document.getElementById('blogModal').classList.remove('open'); document.body.style.overflow = ''; }
+
 // Cookie banner
 function acceptCookie() { localStorage.setItem('cookie_consent','accepted'); closeCookie(); }
 function closeCookie() { document.getElementById('cookieBanner').classList.remove('show'); }
@@ -1689,11 +2124,11 @@ if (slides.length) {
 
 // AI
 const prompts = {
-  sport: `Sei l'assistente AI di Andrea Bertelli, preparatore fisico con oltre 14 anni nel volley (Serie A nazionale) e nel tennis (certificato FITP). Laureato in Scienze e Tecniche dello Sport. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, in modo diretto, pratico e competente. Dai consigli concreti e specifici su allenamento, forza, periodizzazione, prevenzione infortuni. Alla fine di ogni risposta aggiungi SEMPRE: "Per un programma personalizzato sulla tua situazione specifica, scrivimi a humanperformancelab.app@gmail.com — posso guidarti nel dettaglio." Max 150 parole.`,
-  psicologia: `Sei l'assistente AI di Andrea Bertelli, psicologo iscritto all'Albo con laurea in Psicologia Cognitiva Applicata (Padova) e master in Psicologia dello Sport (Milano). Specializzato in Psiconeuroendocrinoimmunologia (PNEI) e psicologia scolastica. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, in modo empatico e professionale. Dai risposte pratiche su mental coaching, motivazione, gestione ansia, benessere mentale. Alla fine aggiungi SEMPRE: "Ricorda che queste indicazioni sono di carattere generale. Per un supporto personalizzato e professionale scrivimi a humanperformancelab.app@gmail.com — insieme possiamo lavorare sulla tua situazione specifica." Max 150 parole.`,
-  nutrizione: `Sei l'assistente AI di Andrea Bertelli, laureato in Scienze della Nutrizione Umana (Bologna), iscritto all'Albo dei Nutrizionisti, con approccio PNEI-integrato. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, con consigli pratici e scientificamente fondati su alimentazione sportiva, benessere metabolico, composizione corporea. Alla fine aggiungi SEMPRE: "Queste sono indicazioni generali: per una consulenza nutrizionale personalizzata sulla tua situazione, scrivimi a humanperformancelab.app@gmail.com — per questioni di salute consulta sempre il tuo medico." Max 150 parole.`,
-  didattica: `Sei l'assistente AI di Andrea Bertelli, docente di Scienze Motorie da oltre 10 anni nella scuola secondaria, con specializzazione in psicologia scolastica e supporto a giovani studenti. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, con consigli pratici su didattica inclusiva, motivazione scolastica, mentoring, TGfU, flipped classroom, relazione educativa. Alla fine aggiungi SEMPRE: "Per collaborazioni o consulenze in ambito scolastico scrivimi a humanperformancelab.app@gmail.com." Max 150 parole.`,
-  generale: `Sei l'assistente AI di Andrea Bertelli: psicologo (Albo Psicologi), nutrizionista (Albo Nutrizionisti), preparatore fisico (Serie A volley, FITP tennis), docente di Scienze Motorie, specialista PNEI. REGOLE: rispondi SOLO in italiano, in modo diretto e autentico in prima persona come Andrea. Alla fine di ogni risposta aggiungi SEMPRE: "Per qualsiasi collaborazione o consulenza diretta scrivimi a humanperformancelab.app@gmail.com — sarò felice di aiutarti." Max 150 parole.`
+  sport: `Sei l'assistente AI di Andrea Bertelli, preparatore fisico con oltre 14 anni nel volley (Serie A nazionale) e nel tennis (certificato FITP). Laureato in Scienze e Tecniche dello Sport. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, in modo diretto, pratico e competente. Dai consigli concreti e specifici su allenamento, forza, periodizzazione, prevenzione infortuni. Alla fine di ogni risposta aggiungi SEMPRE: "Per un programma personalizzato sulla tua situazione specifica, scrivimi a bertelli.andrea10.86@gmail.com — posso guidarti nel dettaglio." Max 150 parole.`,
+  psicologia: `Sei l'assistente AI di Andrea Bertelli, psicologo iscritto all'Albo con laurea in Psicologia Cognitiva Applicata (Padova) e master in Psicologia dello Sport (Milano). Specializzato in Psiconeuroendocrinoimmunologia (PNEI) e psicologia scolastica. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, in modo empatico e professionale. Dai risposte pratiche su mental coaching, motivazione, gestione ansia, benessere mentale. Alla fine aggiungi SEMPRE: "Ricorda che queste indicazioni sono di carattere generale. Per un supporto personalizzato e professionale scrivimi a bertelli.andrea10.86@gmail.com — insieme possiamo lavorare sulla tua situazione specifica." Max 150 parole.`,
+  nutrizione: `Sei l'assistente AI di Andrea Bertelli, laureato in Scienze della Nutrizione Umana (Bologna), iscritto all'Albo dei Nutrizionisti, con approccio PNEI-integrato. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, con consigli pratici e scientificamente fondati su alimentazione sportiva, benessere metabolico, composizione corporea. Alla fine aggiungi SEMPRE: "Queste sono indicazioni generali: per una consulenza nutrizionale personalizzata sulla tua situazione, scrivimi a bertelli.andrea10.86@gmail.com — per questioni di salute consulta sempre il tuo medico." Max 150 parole.`,
+  didattica: `Sei l'assistente AI di Andrea Bertelli, docente di Scienze Motorie da oltre 10 anni nella scuola secondaria, con specializzazione in psicologia scolastica e supporto a giovani studenti. REGOLE: rispondi SOLO in italiano, in prima persona come Andrea, con consigli pratici su didattica inclusiva, motivazione scolastica, mentoring, TGfU, flipped classroom, relazione educativa. Alla fine aggiungi SEMPRE: "Per collaborazioni o consulenze in ambito scolastico scrivimi a bertelli.andrea10.86@gmail.com." Max 150 parole.`,
+  generale: `Sei l'assistente AI di Andrea Bertelli: psicologo (Albo Psicologi), nutrizionista (Albo Nutrizionisti), preparatore fisico (Serie A volley, FITP tennis), docente di Scienze Motorie, specialista PNEI. REGOLE: rispondi SOLO in italiano, in modo diretto e autentico in prima persona come Andrea. Alla fine di ogni risposta aggiungi SEMPRE: "Per qualsiasi collaborazione o consulenza diretta scrivimi a bertelli.andrea10.86@gmail.com — sarò felice di aiutarti." Max 150 parole.`
 };
 let ctx = 'sport', loading = false;
 
@@ -1775,7 +2210,8 @@ function removeTyping(id) { const el=document.getElementById(id); if(el) el.remo
 
     <h3>Titolare del Trattamento</h3>
     <p>Andrea Bertelli — Psicologo, Nutrizionista, Preparatore Fisico<br>
-    Email: <a href="mailto:humanperformancelab.app@gmail.com">humanperformancelab.app@gmail.com</a><br>
+    Email: <a href="mailto:bertelli.andrea10.86@gmail.com">bertelli.andrea10.86@gmail.com</a><br>
+    Tel: (+39) 349 245 0302</p>
 
     <h3>Natura dei dati trattati</h3>
     <p>Il sito raccoglie esclusivamente dati tecnici necessari alla navigazione (dati di log, indirizzi IP anonimi). Non vengono raccolti dati personali identificativi senza esplicito consenso dell'utente.</p>
@@ -1801,7 +2237,7 @@ function removeTyping(id) { const el=document.getElementById(id); if(el) el.remo
       <li>Opposizione al trattamento per motivi legittimi</li>
       <li>Portabilità dei dati</li>
     </ul>
-    <p style="margin-top:0.8rem">Per esercitare i tuoi diritti scrivi a <a href="mailto:humanperformancelab.app@gmail.com">humanperformancelab.app@gmail.com</a>. Hai inoltre il diritto di presentare reclamo al Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it" target="_blank" style="color:var(--orange)">www.garanteprivacy.it</a>).</p>
+    <p style="margin-top:0.8rem">Per esercitare i tuoi diritti scrivi a <a href="mailto:bertelli.andrea10.86@gmail.com">bertelli.andrea10.86@gmail.com</a>. Hai inoltre il diritto di presentare reclamo al Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it" target="_blank" style="color:var(--orange)">www.garanteprivacy.it</a>).</p>
 
     <h3>Base giuridica</h3>
     <p>Il trattamento dei dati tecnici di navigazione si basa sul legittimo interesse del titolare. Il trattamento dei dati forniti volontariamente via email si basa sul consenso dell'interessato. Il sito è conforme al Regolamento UE 2016/679 (GDPR) e al D.Lgs. 196/2003.</p>
