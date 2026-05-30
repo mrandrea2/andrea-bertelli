@@ -950,6 +950,73 @@ footer p {
   color: var(--muted);
 }
 
+/* HAMBURGER + MOBILE MENU */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 600;
+}
+.nav-burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+.nav-burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--orange); }
+.nav-burger.active span:nth-child(2) { opacity: 0; }
+.nav-burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--orange); }
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 550;
+  background: rgba(8,13,26,0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu-close {
+  position: absolute;
+  top: 1.5rem; right: 1.8rem;
+  background: none; border: none;
+  color: var(--muted); font-size: 2rem;
+  cursor: pointer;
+}
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+.mobile-menu-links a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-menu-links a:hover { color: var(--orange); }
+.mobile-menu-cta {
+  margin-top: 1rem;
+  background: var(--orange);
+  color: white !important;
+  padding: 0.9rem 2.2rem;
+  border-radius: 3px;
+  font-size: 1.3rem !important;
+}
+
 /* STICKY CTA */
 .sticky-cta {
   position: fixed; bottom: 2rem; right: 2rem; z-index: 400;
@@ -1014,7 +1081,9 @@ footer p {
 .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
 .blog-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: all 0.35s; cursor: pointer; }
 .blog-card:hover { border-color: var(--orange); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.blog-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; }
+.blog-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; background-size: cover; background-position: center; }
+.blog-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,23,48,0.85), rgba(13,23,48,0.35)); }
+.blog-img span { position: relative; z-index: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
 .blog-body { padding: 1.8rem; }
 .blog-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.7rem; }
 .blog-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; letter-spacing: 0.03em; color: var(--white); line-height: 1.15; margin-bottom: 0.8rem; }
@@ -1046,75 +1115,137 @@ footer p {
 @media (max-width: 960px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
 
   /* HERO MOBILE */
   #hero {
-    padding: 7rem 1.5rem 4rem;
+    padding: 6.5rem 1.3rem 3.5rem;
     min-height: 100svh;
     justify-content: center;
   }
-  .hero-visual { width: 100%; clip-path: none; opacity: 0.18; }
+  .hero-visual { width: 100%; clip-path: none; opacity: 0.14; }
   .hero-number { display: none; }
-  .hero-orange-line { width: 80%; bottom: 30%; }
-  .hero-title { font-size: clamp(4rem, 18vw, 6rem); }
-  .hero-overline { font-size: 0.65rem; letter-spacing: 0.2em; }
-  .hero-bottom { flex-direction: column; gap: 2rem; align-items: flex-start; }
-  .hero-desc { max-width: 100%; font-size: 0.95rem; }
-  .hero-stats { gap: 2rem; }
+  .hero-orange-line { display: none; }
+  .hero-title { font-size: clamp(3.5rem, 17vw, 5.5rem); }
+  .hero-overline { font-size: 0.6rem; letter-spacing: 0.15em; line-height: 1.6; }
+  .hero-bottom { flex-direction: column; gap: 1.8rem; align-items: flex-start; }
+  .hero-desc { max-width: 100%; font-size: 1rem; }
+  .hero-stats { gap: 2.5rem; }
   .h-stat { text-align: left; }
-  .h-stat-num { font-size: 2.2rem; }
+  .h-stat-num { font-size: 2.4rem; }
   .h-stat-label { font-size: 0.65rem; }
+  /* Hero CTA full width on mobile */
+  .hero-cta-mobile { width: 100%; }
+  .hero-cta-mobile a:first-child { width: 100%; justify-content: center; }
 
   /* ABOUT MOBILE */
-  #about .s { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
-  .big-title { font-size: clamp(2.2rem, 10vw, 4rem); margin-bottom: 2rem; }
-  .about-text { font-size: 0.95rem; }
-  .stat-n { font-size: 3rem; width: 90px; }
-  .stat-row { padding: 1.3rem 0; gap: 1.2rem; }
+  #about .s { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.3rem; }
+  .big-title { font-size: clamp(2.3rem, 11vw, 4rem); margin-bottom: 2rem; }
+  .about-text { font-size: 1rem; }
+  .stat-n { font-size: 2.6rem; width: 80px; }
+  .stat-row { padding: 1.3rem 0; gap: 1rem; }
+  .stat-title { font-size: 0.9rem; }
+  .about-pills { gap: 0.5rem; }
+  .pill { font-size: 0.72rem; padding: 0.4rem 0.85rem; }
 
   /* SECTIONS */
-  .s { padding: 4rem 1.5rem; }
+  .s { padding: 4rem 1.3rem; }
   .tag { font-size: 0.65rem; }
 
   /* PILLARS */
   .pillars-grid { grid-template-columns: 1fr; }
-  .pillar { padding: 2.5rem 1.8rem; }
-  .pillar-title { font-size: 1.6rem; }
-  .pillar-desc { font-size: 0.85rem; }
+  .pillar { padding: 2.2rem 1.6rem; }
+  .pillar-title { font-size: 1.5rem; }
+  .pillar-desc { font-size: 0.92rem; }
+  .pillar-num { font-size: 4rem; }
+
+  /* PROGETTI cards (inline grids) → stack */
+  #progetti div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding: 2rem 1.5rem !important;
+  }
+  /* Books grid */
+  #progetti div[style*="minmax(280px"] { grid-template-columns: 1fr !important; }
+  /* Project decorative panels - shorter on mobile */
+  .proj-visual { min-height: 200px !important; }
 
   /* AI */
   .ai-top { grid-template-columns: 1fr; }
   .ai-intro { border-right: none; border-bottom: 1px solid var(--border); padding: 1.8rem; }
   .ai-intro h3 { font-size: 1.6rem; }
   .ai-status { padding: 1.5rem 1.8rem; gap: 1rem; }
-  .ai-messages { padding: 1.5rem; max-height: 320px; }
-  .msg-b { max-width: 85%; font-size: 0.85rem; }
+  .ai-messages { padding: 1.3rem; max-height: 340px; }
+  .msg-b { max-width: 88%; font-size: 0.9rem; }
   .ai-input-row { flex-direction: column; }
   .ai-field { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); }
-  .ai-send-btn { padding: 1rem; font-size: 0.85rem; letter-spacing: 0.15em; }
-  .ctx-bar { gap: 0; }
-  .ctx-btn { padding: 0.9rem 1rem; font-size: 0.65rem; letter-spacing: 0.1em; }
+  .ai-send-btn { padding: 1rem; font-size: 0.9rem; letter-spacing: 0.15em; }
+  .ctx-bar { gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .ctx-btn { padding: 0.9rem 1rem; font-size: 0.65rem; letter-spacing: 0.08em; flex-shrink: 0; }
+
+  /* PROCESSO */
+  .proc-grid { grid-template-columns: 1fr !important; gap: 1.2rem !important; }
+
+  /* TESTIMONIALS */
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card { padding: 2rem 1.6rem; }
+  .testi-text { font-size: 0.95rem; }
+
+  /* BLOG */
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-modal-box { padding: 2rem 1.4rem; }
+  .blog-modal-title { font-size: 2rem; }
+  .blog-modal-content { font-size: 0.95rem; line-height: 1.9; }
+  .blog-modal-cta { flex-direction: column; align-items: flex-start; }
 
   /* EXPERIENCE */
   .exp-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.8rem 0; }
   .exp-badge { display: none; }
-  .exp-role { font-size: 1.4rem; }
+  .exp-role { font-size: 1.35rem; }
   .exp-period { font-size: 0.68rem; }
+  .exp-desc { font-size: 0.95rem; }
 
   /* EDUCATION */
   .edu-grid { grid-template-columns: 1fr; }
   .edu-card { padding: 1.8rem 1.5rem; }
 
   /* CONTACT */
-  .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-  .manifesto { padding: 2rem; }
-  .manifesto p { font-size: 0.95rem; }
-  .c-value { font-size: 0.85rem; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .manifesto { padding: 2rem 1.6rem; }
+  .manifesto p { font-size: 0.98rem; }
+  .c-value { font-size: 0.92rem; word-break: break-word; }
+
+  /* CALENDLY MODAL */
+  .cal-box { padding: 2.2rem 1.5rem; }
+  .cal-box h3 { font-size: 2rem; }
+  .cal-options { grid-template-columns: 1fr; gap: 0.8rem; }
+  .cal-option { padding: 1.2rem 1rem; }
+  .cal-link { font-size: 1rem; padding: 0.9rem 1.8rem; width: 100%; justify-content: center; }
+
+  /* COOKIE / PRIVACY */
+  .cookie-banner { flex-direction: column; align-items: stretch; padding: 1.2rem; gap: 1rem; }
+  .cookie-btns { width: 100%; }
+  .cookie-accept, .cookie-decline { flex: 1; }
+  .privacy-box { padding: 2rem 1.4rem; max-height: 85vh; }
+
+  /* STICKY CTA */
+  .sticky-cta { bottom: 1rem; right: 1rem; left: 1rem; align-items: stretch; }
+  .sticky-cta-btn { justify-content: center; font-size: 0.95rem; padding: 1rem; }
 
   /* FOOTER */
   footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
   body { cursor: auto; }
   .cursor, .cursor-ring { display: none; }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 420px) {
+  .hero-title { font-size: clamp(3rem, 16vw, 4.5rem); }
+  .big-title { font-size: clamp(2rem, 10vw, 3rem); }
+  .hero-stats { gap: 1.8rem; }
+  .h-stat-num { font-size: 2.1rem; }
+  .s { padding: 3.5rem 1.1rem; }
+  .stat-n { font-size: 2.2rem; width: 70px; }
 }
 
 /* COOKIE BANNER */
@@ -1254,7 +1385,7 @@ footer p {
 <div class="sticky-cta" id="stickyCta">
   <button class="sticky-cta-btn" onclick="openCal()">
     <div class="sticky-pulse"></div>
-    PRENOTA UNA CONSULENZA
+    CALL GRATUITA
   </button>
 </div>
 
@@ -1262,8 +1393,9 @@ footer p {
 <div class="cal-modal" id="calModal" onclick="if(event.target===this)closeCal()">
   <div class="cal-box">
     <button class="cal-close" onclick="closeCal()">✕</button>
-    <h3>PRENOTA UNA CONSULENZA</h3>
-    <p>Scegli il tipo di consulenza che fa per te. Rispondo entro 24 ore per fissare data e orario.</p>
+    <div style="display:inline-block;background:rgba(245,96,42,0.15);border:1px solid var(--orange);color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.2rem">★ Prima call gratuita</div>
+    <h3>PRENOTA LA TUA CONSULENZA</h3>
+    <p>La prima call conoscitiva è <strong style="color:var(--white)">gratuita e senza impegno</strong>. Capiamo insieme i tuoi obiettivi e come posso aiutarti. Scegli l'area di interesse:</p>
     <div class="cal-options">
       <div class="cal-option">
         <div class="cal-option-icon">🏋️</div>
@@ -1301,13 +1433,34 @@ footer p {
     <li><a href="#pillars">Competenze</a></li>
     <li><a href="#progetti">Progetti</a></li>
     <li><a href="#testimonials">Recensioni</a></li>
+    <li><a href="#processo">Come Lavoro</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#experience">Esperienza</a></li>
     <li><a href="#education">Formazione</a></li>
     <li><a href="#contact">Contatti</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Contattami</a>
+  <a href="#" onclick="openCal();return false;" class="nav-cta">Call Gratuita</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Chiudi">✕</button>
+  <nav class="mobile-menu-links">
+    <a href="#about" onclick="toggleMenu()">Profilo</a>
+    <a href="#pillars" onclick="toggleMenu()">Competenze</a>
+    <a href="#progetti" onclick="toggleMenu()">Progetti</a>
+    <a href="#testimonials" onclick="toggleMenu()">Recensioni</a>
+    <a href="#processo" onclick="toggleMenu()">Come Lavoro</a>
+    <a href="#blog" onclick="toggleMenu()">Blog</a>
+    <a href="#experience" onclick="toggleMenu()">Esperienza</a>
+    <a href="#education" onclick="toggleMenu()">Formazione</a>
+    <a href="#contact" onclick="toggleMenu()">Contatti</a>
+    <a href="#" onclick="toggleMenu();openCal();return false;" class="mobile-menu-cta">📅 &nbsp;Call Gratuita</a>
+  </nav>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1343,6 +1496,11 @@ footer p {
         </div>
       </div>
     </div>
+    <div class="hero-cta-mobile" style="margin-top:2.5rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;opacity:0;animation:fade-up 0.8s 0.9s ease both">
+      <a href="#" onclick="openCal();return false;" style="display:inline-flex;align-items:center;gap:0.7rem;background:var(--orange);color:white;text-decoration:none;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.12em;padding:1.1rem 2.6rem;border-radius:3px;box-shadow:0 10px 35px rgba(245,96,42,0.35);transition:all 0.25s" onmouseover="this.style.background='#ff8c5a';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--orange)';this.style.transform='none'">📅 &nbsp;PRENOTA UNA CALL GRATUITA</a>
+      <a href="#progetti" style="font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--muted)'">Scopri di più →</a>
+    </div>
+    <p style="margin-top:1.2rem;font-size:0.9rem;color:var(--orange);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;opacity:0;animation:fade-up 0.8s 1.1s ease both">✓ &nbsp;Prima consulenza conoscitiva gratuita e senza impegno</p>
   </div>
 
 
@@ -1547,7 +1705,7 @@ footer p {
             Accedi Gratuitamente →
           </a>
         </div>
-        <div style="position:relative;overflow:hidden;border-radius:4px;min-height:280px;background:linear-gradient(135deg,#0d1730,#1a2e58);display:flex;align-items:center;justify-content:center">
+        <div class="proj-visual" style="position:relative;overflow:hidden;border-radius:4px;min-height:280px;background:linear-gradient(135deg,#0d1730,#1a2e58);display:flex;align-items:center;justify-content:center">
           <div style="text-align:center;padding:2rem">
             <div style="font-size:5rem;margin-bottom:1rem">🧠</div>
             <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:var(--white);margin-bottom:0.5rem">PSICOLOGIA SCOLASTICA</div>
@@ -1562,7 +1720,7 @@ footer p {
     <!-- NUTRIZIONE AI -->
     <div class="reveal" style="margin-bottom:2px">
       <div style="background:var(--night);border:1px solid var(--border);padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--orange)'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="position:relative;overflow:hidden;border-radius:4px;min-height:280px;background:linear-gradient(135deg,#0d1a14,#0f2e1a);display:flex;align-items:center;justify-content:center">
+        <div class="proj-visual" style="position:relative;overflow:hidden;border-radius:4px;min-height:280px;background:linear-gradient(135deg,#0d1a14,#0f2e1a);display:flex;align-items:center;justify-content:center">
           <div style="text-align:center;padding:2rem">
             <div style="font-size:5rem;margin-bottom:1rem">🥗</div>
             <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:var(--white);margin-bottom:0.5rem">AB NUTRITION</div>
@@ -1611,7 +1769,7 @@ footer p {
             Allenati Ora →
           </a>
         </div>
-        <div style="position:relative;overflow:hidden;border-radius:4px;min-height:300px;background:linear-gradient(135deg,#0a0d1f,#0d1a40);display:flex;align-items:center;justify-content:center">
+        <div class="proj-visual" style="position:relative;overflow:hidden;border-radius:4px;min-height:300px;background:linear-gradient(135deg,#0a0d1f,#0d1a40);display:flex;align-items:center;justify-content:center">
           <div style="text-align:center;padding:2rem;position:relative;z-index:2">
             <div style="font-size:5rem;margin-bottom:1rem">👁️</div>
             <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:var(--white);margin-bottom:0.5rem">VISUAL TRAINING</div>
@@ -1735,6 +1893,37 @@ footer p {
   </div>
 </section>
 
+<!-- COME LAVORO -->
+<section id="processo" style="background:var(--navy2)">
+  <div class="s">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 4rem">
+      <div class="tag" style="justify-content:center">Come Lavoro</div>
+      <h2 class="big-title">DALLA PRIMA CALL<br><em>AI TUOI RISULTATI</em></h2>
+      <p style="font-size:1.1rem;color:var(--muted);line-height:1.8;margin-top:1.5rem">Un percorso chiaro e personalizzato. Nessun impegno per iniziare: la prima consulenza conoscitiva è gratuita.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="reveal proc-grid">
+      <div style="background:var(--night);border:1px solid var(--border);border-radius:4px;padding:2.5rem;position:relative;transition:all 0.3s" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:4rem;color:transparent;-webkit-text-stroke:1.5px var(--orange);line-height:1;margin-bottom:1.2rem">01</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem">CALL GRATUITA</div>
+        <p style="font-size:0.95rem;color:var(--muted);line-height:1.8">Ci conosciamo in una breve videochiamata gratuita. Mi racconti i tuoi obiettivi, le tue difficoltà e cosa vuoi raggiungere. Senza impegno.</p>
+      </div>
+      <div style="background:var(--night);border:1px solid var(--border);border-radius:4px;padding:2.5rem;position:relative;transition:all 0.3s" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:4rem;color:transparent;-webkit-text-stroke:1.5px var(--orange);line-height:1;margin-bottom:1.2rem">02</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem">ANALISI & STRATEGIA</div>
+        <p style="font-size:0.95rem;color:var(--muted);line-height:1.8">Analizziamo la tua situazione con un approccio integrato — corpo, mente, alimentazione. Costruisco una strategia su misura per te e i tuoi obiettivi.</p>
+      </div>
+      <div style="background:var(--night);border:1px solid var(--border);border-radius:4px;padding:2.5rem;position:relative;transition:all 0.3s" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:4rem;color:transparent;-webkit-text-stroke:1.5px var(--orange);line-height:1;margin-bottom:1.2rem">03</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem">PERCORSO & RISULTATI</div>
+        <p style="font-size:0.95rem;color:var(--muted);line-height:1.8">Ti accompagno passo dopo passo nel percorso, con monitoraggio costante dei progressi e aggiustamenti continui per portarti dove vuoi arrivare.</p>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:3.5rem">
+      <a href="#" onclick="openCal();return false;" style="display:inline-flex;align-items:center;gap:0.8rem;background:var(--orange);color:white;text-decoration:none;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.12em;padding:1.2rem 3rem;border-radius:3px;box-shadow:0 10px 35px rgba(245,96,42,0.3);transition:all 0.25s" onmouseover="this.style.background='#ff8c5a';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--orange)';this.style.transform='none'">📅 &nbsp;INIZIA CON UNA CALL GRATUITA</a>
+    </div>
+  </div>
+</section>
+
 <!-- BLOG -->
 <section id="blog">
   <div class="s">
@@ -1745,7 +1934,7 @@ footer p {
     <div class="blog-grid reveal">
 
       <div class="blog-card" onclick="openBlog(0)">
-        <div class="blog-img" style="background:linear-gradient(135deg,#0d1a2e,#1a3a5c)">🧠</div>
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80')"><span>🧠</span></div>
         <div class="blog-body">
           <div class="blog-cat">Psicologia dello Sport</div>
           <div class="blog-title">ANSIA DA PRESTAZIONE: COME TRASFORMARLA IN ENERGIA</div>
@@ -1758,7 +1947,7 @@ footer p {
       </div>
 
       <div class="blog-card" onclick="openBlog(1)">
-        <div class="blog-img" style="background:linear-gradient(135deg,#0d2218,#1a4a2e)">🥗</div>
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80')"><span>🥗</span></div>
         <div class="blog-body">
           <div class="blog-cat">Nutrizione Sportiva</div>
           <div class="blog-title">CARBOIDRATI E SPORT: TUTTO QUELLO CHE DEVI SAPERE</div>
@@ -1771,7 +1960,7 @@ footer p {
       </div>
 
       <div class="blog-card" onclick="openBlog(2)">
-        <div class="blog-img" style="background:linear-gradient(135deg,#1a1a0d,#3a3a1a)">💪</div>
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80')"><span>💪</span></div>
         <div class="blog-body">
           <div class="blog-cat">Preparazione Fisica</div>
           <div class="blog-title">PERIODIZZAZIONE: PERCHÉ IL TUO ALLENAMENTO NON FUNZIONA</div>
@@ -1784,7 +1973,7 @@ footer p {
       </div>
 
       <div class="blog-card" onclick="openBlog(3)">
-        <div class="blog-img" style="background:linear-gradient(135deg,#1a0d1a,#3a1a3a)">🔬</div>
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80')"><span>🔬</span></div>
         <div class="blog-body">
           <div class="blog-cat">PNEI</div>
           <div class="blog-title">PNEI: LA SCIENZA CHE COLLEGA MENTE, CORPO E IMMUNITÀ</div>
@@ -1797,7 +1986,7 @@ footer p {
       </div>
 
       <div class="blog-card" onclick="openBlog(4)">
-        <div class="blog-img" style="background:linear-gradient(135deg,#1a1200,#3a2800)">📚</div>
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80')"><span>📚</span></div>
         <div class="blog-body">
           <div class="blog-cat">Psicologia Scolastica</div>
           <div class="blog-title">MOTIVAZIONE ALLO STUDIO: 5 STRATEGIE CHE FUNZIONANO DAVVERO</div>
@@ -1810,7 +1999,7 @@ footer p {
       </div>
 
       <div class="blog-card" onclick="openBlog(5)">
-        <div class="blog-img" style="background:linear-gradient(135deg,#001a1a,#003a3a)">👁️</div>
+        <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1551763242-5b3eccf2fd7e?w=600&q=80')"><span>👁️</span></div>
         <div class="blog-body">
           <div class="blog-cat">Performance Cognitiva</div>
           <div class="blog-title">VISUAL TRAINING: L'ALLENAMENTO CHE GLI ATLETI D'ÉLITE GIÀ USANO</div>
@@ -1935,29 +2124,28 @@ footer p {
   <div class="s">
     <div class="reveal">
       <div class="tag">Contatti</div>
-      <h2 class="big-title">LAVORIAMO<br><em>INSIEME</em></h2>
+      <h2 class="big-title">PRONTO A<br><em>INIZIARE?</em></h2>
     </div>
     <div class="contact-wrap">
       <div class="contact-left reveal">
+        <div style="background:var(--navy2);border:1px solid var(--orange);border-radius:6px;padding:2.5rem;margin-bottom:2rem">
+          <div style="display:inline-block;background:rgba(245,96,42,0.15);color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:50px;margin-bottom:1.2rem">★ Gratis e senza impegno</div>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;color:var(--white);margin-bottom:0.8rem;line-height:1.05">PRENOTA LA TUA<br>CALL CONOSCITIVA</h3>
+          <p style="font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:1.8rem">Il primo passo è una chiacchierata gratuita. Capiamo insieme i tuoi obiettivi e come posso aiutarti — sport, mente, nutrizione o un percorso integrato.</p>
+          <a href="#" onclick="openCal();return false;" style="display:inline-flex;align-items:center;gap:0.8rem;background:var(--orange);color:white;text-decoration:none;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:0.12em;padding:1.1rem 2.5rem;border-radius:3px;transition:all 0.25s;width:100%;justify-content:center" onmouseover="this.style.background='#ff8c5a'" onmouseout="this.style.background='var(--orange)'">📅 &nbsp;PRENOTA ORA</a>
+        </div>
         <div class="contact-line">
           <div class="c-icon">✉️</div>
           <div>
             <div class="c-label">Email</div>
-            <div class="c-value">bertelli.andrea10.86@gmail.com</div>
-          </div>
-        </div>
-        <div class="contact-line">
-          <div class="c-icon">📞</div>
-          <div>
-            <div class="c-label">Telefono</div>
-            <div class="c-value">(+39) 349 245 0302</div>
+            <div class="c-value">humanperformancelab.app@gmail.com</div>
           </div>
         </div>
         <div class="contact-line">
           <div class="c-icon">🌐</div>
           <div>
             <div class="c-label">Disponibilità</div>
-            <div class="c-value">In presenza e online</div>
+            <div class="c-value">In presenza (Verona) e online</div>
           </div>
         </div>
       </div>
@@ -1968,7 +2156,7 @@ footer p {
             <div class="m-av">AB</div>
             <div>
               <div class="m-name">Andrea Bertelli</div>
-              <div class="m-role">Docente · Psicologo · Preparatore · Nutrizionista</div>
+              <div class="m-role">Psicologo · Nutrizionista · Preparatore · Specialista PNEI</div>
             </div>
           </div>
         </div>
@@ -1985,6 +2173,15 @@ footer p {
 </footer>
 
 <script>
+// Mobile menu
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('navBurger');
+  const isOpen = menu.classList.toggle('open');
+  burger.classList.toggle('active', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
 // Sticky CTA
 window.addEventListener('scroll', () => {
   document.getElementById('stickyCta').classList.toggle('show', window.scrollY > 500);
